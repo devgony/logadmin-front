@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+.input {
+  @apply focus:outline-none focus:border-gray-500 p-3 border-2  text-lg border-gray-200 transition-colors;
+}
+
+.link {
+  @apply text-orange-600 hover:underline;
+}
+
+.container {
+  @apply max-w-screen-2xl mx-auto;
+}
+
+.btn {
+  @apply text-lg font-medium focus:outline-none text-white py-4  transition-colors bg-orange-600 hover:bg-orange-700;
+}
+
+@tailwind utilities;
