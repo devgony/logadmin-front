@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.10",
+    "@d3fc/d3fc-discontinuous-scale": "^4.0.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
@@ -25,6 +26,7 @@
     "react-hook-form": "^6.15.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "recharts": "^2.1.6",
     "rimraf": "^3.0.2",
     "subscriptions-transport-ws": "^0.9.18",
     "tailwindcss": "^2.2.19",

@@ -1,13 +1,16 @@
+import { WebSocketLink } from "@apollo/client/link/ws";
 import {
   ApolloClient,
   createHttpLink,
   from,
   InMemoryCache,
   makeVar,
+  split,
 } from "@apollo/client";
 import { LOGADMIN_TOKEN } from "./const";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const token = localStorage.getItem(LOGADMIN_TOKEN);
 export const isLoggedInVar = makeVar(Boolean(token)); // false
@@ -26,6 +29,31 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const wsLink = new WebSocketLink({
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "ws://localhost:5001/graphql"
+      : `ws://localhost:5001/graphql`,
+  options: {
+    reconnect: true,
+    connectionParams: {
+      "x-jwt": authTokenVar() || "",
+    },
+  },
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  authLink.concat(httpLink)
+);
+
 const onErrorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     console.log(`GraphQL Error`, graphQLErrors);
@@ -36,7 +64,7 @@ const onErrorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 export const client = new ApolloClient({
-  link: from([onErrorLink, authLink.concat(httpLink)]),
+  link: from([onErrorLink, splitLink]),
   // link: authLink.concat(httpLink),
   cache: new InMemoryCache({
     typePolicies: {

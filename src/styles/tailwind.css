@@ -16,4 +16,8 @@
   @apply text-lg font-medium focus:outline-none text-white py-4  transition-colors bg-orange-600 hover:bg-orange-700;
 }
 
+.btn-s {
+  @apply w-12 h-4 rounded bg-sky-600 text-yellow-50 text-xs text-center hover:bg-opacity-50;
+}
+
 @tailwind utilities;

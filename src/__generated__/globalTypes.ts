@@ -12,6 +12,10 @@ export interface LoginInput {
   password: string;
 }
 
+export interface MonitorPerfInput {
+  name: string;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

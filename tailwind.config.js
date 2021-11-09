@@ -1,6 +1,7 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+  mode: "jit",
   purge: ["./src/**/*.tsx"],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -16,6 +17,7 @@ module.exports = {
       colors: {
         lime: colors.lime,
         orange: colors.orange,
+        sky: colors.sky,
       },
     },
   },

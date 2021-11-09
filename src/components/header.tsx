@@ -7,6 +7,9 @@ export const Header: React.FC = () => {
     <>
       <header className="h-5vh bg-gray-400 flex justify-between px-2 items-center">
         <Link to="/">
+          <h1 className="flex items-center bg-orange-300">Link Manager</h1>
+        </Link>
+        <Link to="/">
           <h1 className="flex items-center bg-orange-300">Logadmin</h1>
         </Link>
         <span className="text-xs">
