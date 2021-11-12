@@ -12,8 +12,7 @@ export interface findLinks_findLinks_links {
   name: string;
   host: string;
   port: number;
-  database: string;
-  connectString: string;
+  serviceName: string;
   username: string;
   password: string;
 }
